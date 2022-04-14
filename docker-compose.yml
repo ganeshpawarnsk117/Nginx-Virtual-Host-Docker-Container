@@ -1,0 +1,16 @@
+version: '3'
+services:
+  
+  webserver:
+    build: .
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "81:81"
+        #      - "443:443"
+    volumes:
+      - ./sites/:/usr/share/nginx/html
+      - ./demoone/:/usr/share/nginx/html/demoone
+        #   - ./ssl/:/etc/ssl

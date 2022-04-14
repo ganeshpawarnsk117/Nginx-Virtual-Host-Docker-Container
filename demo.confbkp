@@ -1,0 +1,39 @@
+server {
+    listen       80;
+    server_name  demo.rbante.cloudns.cl;
+
+    location /usr/share/nginx/html/ {
+        autoindex on;
+        
+	proxy_pass http://54.144.126.222:80;
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+
+    }
+
+    # redirect server error pages to the static page /50x.html
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+
+server {
+    listen       80;
+    server_name  test.rbante.cloudns.cl;
+
+    location /usr/share/nginx/html/demoone/ {
+        autoindex on;
+	
+	proxy_pass http://54.144.126.222:81;
+        root   /usr/share/nginx/html/demoone;
+        index  index.html index.htm;
+    }
+
+    # redirect server error pages to the static page /50x.html
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html/demoone;
+    }
+}
+
